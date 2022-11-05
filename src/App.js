@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+// import './app1.css';
+import Navbar from './Navbar';
+// import { Routes, Route } from "react-router-dom"
+import Textarea from './Textarea';
+import React,{useState} from 'react';
+import About from './About';
 
 function App() {
+  const [mode, setmode] = useState("white");
+  const [mystyle, setmystyle] = useState({
+    color: "black",
+    backgroundColor: "white",
+  });
+  
+  const ontoggle = () => {
+    if (mode === "dark") {
+      setmode("white");
+      setmystyle({
+        color: "black",
+        backgroundColor: "white",
+      });
+    } else {
+      setmode("dark");
+      setmystyle({
+        color: "white",
+        backgroundColor: "blue",
+      });
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar mode={mode} ontoggle={ontoggle} />
+      <Textarea mystyle={mystyle}/>
+      <About mystyle={mystyle}/> 
+      {/* <Textarea/> */}
+      {/* <Routes> */}
+        {/* <Route path="/Textarea" element={ <Textarea mystyle={mystyle}/> } /> */}
+        {/* <Route path="/about" element={ <About mystyle={mystyle}/> } /> */}
+        {/* <Route path="contact" element={ <Contact/> } /> */}
+      {/* </Routes> */}
+      
     </div>
   );
 }
